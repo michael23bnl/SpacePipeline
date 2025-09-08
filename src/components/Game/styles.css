@@ -1,0 +1,44 @@
+
+.session-data {
+    display: flex;
+    justify-content: space-between;   
+}
+
+.nickname-area {
+    width: 200px;
+    height: 70px;
+    background-color: #f4f4f8;
+    border-radius: 5px;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.timer-area {
+    width: 200px;
+    height: 70px;
+    background-color: #f4f4f8;
+    border-radius: 5px;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.pause-button {
+    width: 200px;
+    height: 70px;
+    background-color: #f4f4f8;
+    border-radius: 5px;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-top: 20px;
+}

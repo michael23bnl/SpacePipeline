@@ -1,0 +1,19 @@
+
+.score {
+    width: 200px;
+    height: 70px;
+    background-color: #f4f4f8;
+    border-radius: 5px;
+    color: black;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.navigate-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

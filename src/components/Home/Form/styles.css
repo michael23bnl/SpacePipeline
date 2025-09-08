@@ -1,0 +1,10 @@
+
+.start-screen-form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: left;
+}
+
