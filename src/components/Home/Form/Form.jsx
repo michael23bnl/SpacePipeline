@@ -9,7 +9,7 @@ import { GameContext } from '../../../contexts/GameContext'
 
 export const Form = () => {
 
-    const {nickname, setNickname, timer, setTimer} = useContext(GameContext)
+    const {nickname, setNickname, timer, setTimer, setFieldRows, setFieldCols} = useContext(GameContext)
 
     const [nicknameError, setNicknameError] = useState("")
 
@@ -72,6 +72,44 @@ export const Form = () => {
             />
             
             {nicknameError && <div>{nicknameError}</div>}
+
+            <label>
+                Размер игрового поля
+            </label>
+
+            <div className='field-size-input-area'>
+                <select
+                    defaultValue={10}
+                    onChange={(e) => {
+                        setFieldRows(Number(e.target.value))
+                    }}
+                >
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <span> на </span>
+                <select
+                    defaultValue={10}
+                    onChange={(e) => {
+                        setFieldCols(Number(e.target.value))
+                    }}
+                >
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+            </div>
 
             <label>
                 Длительность игры (в секундах)

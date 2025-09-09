@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const Game = () => {
     const { setScore } = useContext(GameContext)
-    const { nickname, timer } = useContext(GameContext)
+    const { nickname, timer, fieldRows, fieldCols } = useContext(GameContext)
     const [timeLeft, setTimeLeft] = useState(timer)
     const [isPaused, setIsPaused] = useState(false)
     const intervalRef = useRef(null)
@@ -67,7 +67,7 @@ export const Game = () => {
                     Осталось времени: {formatTime(timeLeft)}
                 </div>
             </div>
-            <Field isActive={!isPaused}/>
+            <Field isActive={!isPaused} rows={fieldRows} cols={fieldCols}/>
             <button
                 className={`pause-button ${isPaused ? 'paused' : ''}`}
                 onClick={onPause}

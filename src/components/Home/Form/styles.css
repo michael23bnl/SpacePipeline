@@ -8,3 +8,14 @@
     align-items: left;
 }
 
+.field-size-inputa-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.field-size-input {
+    width: 40px;
+}
+

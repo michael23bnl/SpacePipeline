@@ -1,9 +1,7 @@
 
 .game-field {
-    width: 500px;
-    height: 500px;
+    width: fit-content;
+    height: fit-content;
     background-color: wheat;
     display: grid;
-    grid-template-columns: repeat(10, 1fr); /* 10 колонок */
-    grid-template-rows: repeat(10, 1fr); /* 10 строк */
 }
