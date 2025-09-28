@@ -5,8 +5,8 @@ export const GameContext = createContext()
 
 export const GameProvider = ({children}) => {
 
-    const [nickname, setNickname] = useState("")
-    const [timer, setTimer] = useState(60)
+    const [nickname, setNickname] = useState("test")
+    const [timer, setTimer] = useState(600)
     const [score, setScore] = useState()
     const [fieldRows, setFieldRows] = useState(10)
     const [fieldCols, setFieldCols] = useState(10)

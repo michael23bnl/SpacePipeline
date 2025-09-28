@@ -1,8 +1,12 @@
 import './styles.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export const GridElement = ({ x, y, type, initialRotation = 0, isActive }) => {
-  const [rotation, setRotation] = useState(initialRotation)
+export const GridElement = ({ type, initialRotation, isActive }) => {
+  const [rotation, setRotation] = useState(0)
+
+  useEffect(() => {
+    setRotation(initialRotation)
+  }, [initialRotation])
 
   const handleRotate = () => {
     if (!isActive) return
@@ -11,70 +15,32 @@ export const GridElement = ({ x, y, type, initialRotation = 0, isActive }) => {
 
   const getPipeImage = () => {
     switch (type) {
+      case 'start':
+        //return "src/assets/pipe-end.png"
+      case 'end':
+        return "src/assets/pipe-end.png"
       case 'straight':
-        return "src/assets/straight-pipe.svg"
+        return "src/assets/straight-pipe.png"
       case 'curved':
-        return "src/assets/curved-pipe1.svg"
+        return "src/assets/curved-pipe.png"
+      case 'cross':
+        return "src/assets/cross-pipe.png"
+      case 'tee':
+        return "src/assets/tee-pipe.png"
       default:
-        return "src/assets/straight-pipe.svg"
+        return "empty"
     }
   }
 
   return (
-    <div 
-      className='grid-element' 
-      onClick={handleRotate}
-      data-x={x}
-      data-y={y}
-    >
+    <div className='grid-element' onClick={handleRotate}>
       <img 
         src={getPipeImage()} 
         alt={type}
         style={{ 
           transform: `rotate(${rotation}deg)`,
-          transition: 'transform 0.3s ease'
         }}
       />
     </div>
   )
 }
-
-
-
-// import './styles.css'
-// import { useState } from 'react'
-
-// export const GridElement = ({ index, isActive }) => {
-//     const [rotation, setRotation] = useState(0)
-
-//     const handleRotate = () => {
-//         if (!isActive) {
-//             return
-//         }
-//         setRotation(prev => prev + 90)
-//     }
-
-//     return (
-//         <div 
-//             className='grid-element' 
-//             onClick={handleRotate}
-//         >
-//             {index % 2 === 0 ? (
-//                 <img 
-//                     src="src/assets/straight-pipe.svg" 
-//                     style={{ 
-//                         transform: `rotate(${rotation}deg)`,
-//                     }}
-//                 />
-//             ) : (
-//                 <img 
-//                     src="src/assets/curved-pipe1.svg" 
-//                     style={{ 
-//                         transform: `rotate(${rotation}deg)`,
-//                     }}
-//                 />
-//             )}
-//         </div>
-//     )
-
-// }

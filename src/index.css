@@ -30,6 +30,7 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  /* background-image: url('./assets/cosmic-bg.jpg'); */
 }
 
 h1 {

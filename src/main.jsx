@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        index: true, // сработает при переходе на "/"
+        index: true, 
         element: <Home />
       },
       {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  // </StrictMode>,
 )
