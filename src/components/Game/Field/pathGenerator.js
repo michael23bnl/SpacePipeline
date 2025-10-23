@@ -72,12 +72,17 @@
 //   return path
 // }
 
+
+
 export const generatePath = (rows, cols) => {
 
   const { path, visited } = generateMainPath(rows, cols)
   const sidePath = generateSidePaths(path, visited, rows, cols)
+  const finalPath = [...path, ...sidePath]
 
-  return [...path, ...sidePath]
+  normalizeRotation(finalPath)
+
+  return finalPath
 }
 
 const generateMainPath = (rows, cols) => {
@@ -114,11 +119,11 @@ const generateMainPath = (rows, cols) => {
     path.push({ 
       x, y, 
       type: (x === endX && y === endY) ? 'end' : 'straight',
-      rotation: 0
+      rotation: Math.floor(Math.random() * 4) * 90
     });
   }
 
-  if (path[1].x > 0) {
+  if (path[1].x > 0) { // разворачиваем начальную и конечную трубы в направлении начала и конца пути соответственно
     path[0].rotation = 90
   }
   else {
@@ -127,6 +132,9 @@ const generateMainPath = (rows, cols) => {
 
   if (path[path.length - 1].x - path[path.length - 2].x > 0) {
     path[path.length - 1].rotation = 270
+  }
+  else {
+    path[path.length - 1].rotation = 0
   }
   
   return { path, visited }
@@ -165,7 +173,7 @@ const generateSidePaths = (path, visited, rows, cols) => {
       if (y > 0 && !visited[y - 1][x]) possibleMoves.push('up');
       
       if (possibleMoves.length === 0) {
-        console.log(x, y, "dead end")
+        //console.log(x, y, "dead end")
         if (sidePath.length === 1) {
           //fragment.type = 'tee' нужно менять в том случае, если количество подключенных к фрагменту труб равно 3
         }
@@ -173,7 +181,7 @@ const generateSidePaths = (path, visited, rows, cols) => {
           finalSidePaths = [...finalSidePaths, ...sidePath]
           sidePath = []
           handleDeadEnd(x, y, endX, endY, finalSidePaths, path)
-        }     
+        }
         break;
       }
     
@@ -197,7 +205,7 @@ const generateSidePaths = (path, visited, rows, cols) => {
       sidePath.push({ 
         x, y, 
         type: 'straight',
-        rotation: 0
+        rotation: Math.floor(Math.random() * 4) * 90
       });
     }
 
@@ -223,13 +231,8 @@ const handleDeadEnd = (x, y, endX, endY, sidePath, path) => {
 
   const sidePathLength = sidePath.length
 
-  // if (sidePathLength <= 1) { 
-  //   console.log(sidePath[0])
-  //   return 
-  // }
-
-  console.log(sidePath, "sidePath")
-  console.log(path, "mainPath")
+  //console.log(sidePath, "sidePath")
+  //console.log(path, "mainPath")
   const prevX = sidePath[sidePathLength - 2].x
   const prevY = sidePath[sidePathLength - 2].y
   const possibleMoves = []
@@ -284,4 +287,22 @@ const handleDeadEnd = (x, y, endX, endY, sidePath, path) => {
       loopClosingFragment.type = 'cross'
       break;
   }
+}
+
+const normalizeRotation = (path) => {
+
+  const divisors = {
+      start: 360, 
+      end: 360,
+      straight: 180,
+      curved: 360,
+      tee: 360,
+      cross: 90
+  };
+
+  path.forEach(element => {
+    const elementType = element.type
+    const divisor = divisors[elementType];
+    element.rotation = element.rotation % divisor
+  });
 }

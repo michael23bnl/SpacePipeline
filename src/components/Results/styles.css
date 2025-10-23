@@ -1,19 +1,78 @@
+.results-form-area {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #304056;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.score-area {
+    padding: 0 20px 20px 20px;
+    border-bottom: 2px solid #eeeeee;
+    width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.field-size {
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
 
 .score {
-    width: 200px;
-    height: 70px;
-    background-color: #f4f4f8;
-    border-radius: 5px;
-    color: black;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.87);
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .navigate-buttons {
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.replay-button, .main-menu-button {
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.replay-button {
+    color: #1a1a1a;
+    background-color: rgba(181, 177, 177, 0.87);
+}
+
+.replay-button:hover {
+    background-color: rgba(255, 255, 255, 0.87);
+}
+
+.main-menu-button {
+    color: #eeeeee;
+     background-color: #1a1a1a;
+}
+
+.replay-button:hover, .main-menu-button:hover {
+    box-shadow: 
+        inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.2);
 }

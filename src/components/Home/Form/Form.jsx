@@ -64,7 +64,8 @@ export const Form = () => {
             <label>
                 Ваше имя
             </label>
-            <input 
+            <input
+                className='name-input'
                 type="text"
                 value={nickname}
                 placeholder="Например, Иван"
@@ -115,6 +116,7 @@ export const Form = () => {
                 Длительность игры (в секундах)
             </label>
             <input 
+                className='timer-input'
                 type="text" 
                 value={timer}
                 onChange={handleSetTimer}
@@ -123,6 +125,7 @@ export const Form = () => {
             {timerError && <div>{timerError}</div>}
 
             <button
+                className='play-button'
                 disabled={timer === "" || nickname === ""}
                 onClick={handleStartGame}
             >

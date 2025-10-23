@@ -8,7 +8,7 @@ export const Results = () => {
 
     const navigate = useNavigate()
 
-    const { score } = useContext(GameContext)
+    const { score, fieldRows, fieldCols } = useContext(GameContext)
 
     const onRestart = () => {
         navigate('/game')
@@ -18,15 +18,23 @@ export const Results = () => {
         navigate('/')
     }
 
-
     return(
-        <>
-            <div className="score">{Number(score) ? `Ваш результат: ${score}` : "Время вышло!"}</div>
+        <div className='results-form-area'>
+            <div className="score-area">
+                    {Number(score) ? (
+                        <>
+                            <div className="field-size">Поле {fieldRows}x{fieldCols}</div>
+                            <div className="score">Ваш результат: {score} с</div>
+                        </>
+                    ) : (
+                        "Время вышло!"
+                    )}
+            </div>
 
             <div className="navigate-buttons">
-                <button onClick={onRestart}>Играть заново</button>
-                <button onClick={onMenu}>В главное меню</button>
+                <button className="replay-button" onClick={onRestart}>Играть заново</button>
+                <button className="main-menu-button" onClick={onMenu}>В главное меню</button>
             </div>
-        </>
+        </div>
     )
 }

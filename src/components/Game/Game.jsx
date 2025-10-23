@@ -3,6 +3,8 @@ import { Field } from "./Field/Field"
 import { useContext, useEffect, useState, useRef } from 'react'
 import { GameContext } from '../../contexts/GameContext'
 import { useNavigate } from 'react-router-dom'
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const Game = () => {
     const { setScore } = useContext(GameContext)
@@ -52,7 +54,10 @@ export const Game = () => {
 
     const onFinish = () => {
         setScore(timer - timeLeft)
-        navigate('/results')
+        
+        setTimeout(() => {
+            navigate('/results')
+        }, 500)
     }
 
     const onPause = () => {
@@ -60,20 +65,24 @@ export const Game = () => {
     }
 
     return(
-        <>
+        <div className='game-screen'>
             <div className='session-data'>
                 <div className="nickname-area">{nickname}</div>
                 <div className="timer-area">
-                    Осталось времени: {formatTime(timeLeft)}
+                    {formatTime(timeLeft)}
                 </div>
+                <button
+                    className={`pause-button ${isPaused ? 'paused' : ''}`}
+                    onClick={onPause}
+                >
+                    {isPaused ? '▶ Продолжить' : '⏸ Пауза'}
+                </button>
             </div>
-            <Field isActive={!isPaused} rows={fieldRows} cols={fieldCols}/>
-            <button
-                className={`pause-button ${isPaused ? 'paused' : ''}`}
-                onClick={onPause}
-            >
-                {isPaused ? 'Продолжить' : 'Пауза'}
-            </button>
-        </>
+            <div className="game-field-container">        
+                <DndProvider backend={HTML5Backend}>
+                    <Field isActive={!isPaused} rows={fieldRows} cols={fieldCols} onFinish={onFinish}/>
+                </DndProvider>
+            </div>
+        </div>
     )
 }
